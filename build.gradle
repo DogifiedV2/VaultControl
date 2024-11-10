@@ -1,0 +1,59 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:5.1.48'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+
+group = 'com.dog.vaultcontrol' // Replace with your mod’s group ID
+version = '1.5.1' // Mod version
+archivesBaseName = 'vaultcontrol'
+
+repositories {
+    maven { url = 'https://maven.minecraftforge.net/' }
+    maven { url = 'https://cursemaven.com' }
+    maven { url = 'https://api.modrinth.com/maven' }
+    mavenCentral()
+}
+
+minecraft {
+    // Set the mappings channel and version
+    mappings channel: 'official', version: '1.18.2'
+
+    // Forge version that you are targeting
+    runs {
+        client {
+            workingDirectory = file('run/client')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+        }
+        server {
+            workingDirectory = file('run/server')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+        }
+    }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.18.2-40.2.9' // Match your desired Forge version
+    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:5621637")
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17)) // Java 17 for Minecraft 1.18.2
+    }
+}
+
+jar {
+    archiveBaseName.set('vaultcontrol')
+    archiveVersion.set('1.5.1')
+}
