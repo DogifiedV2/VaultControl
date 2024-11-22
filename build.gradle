@@ -44,7 +44,7 @@ minecraft {
 
 dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.2.9' // Match your desired Forge version
-    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:5621637")
+    implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:5925633")
 }
 
 java {
@@ -55,5 +55,5 @@ java {
 
 jar {
     archiveBaseName.set('vaultcontrol')
-    archiveVersion.set('1.5.1')
+    archiveVersion.set('1.5.2')
 }
