@@ -1,4 +1,4 @@
-package com.dog.vaultcontrol.events;
+package com.dog.vaultcontrol.saving;
 
 import net.minecraftforge.eventbus.api.Event;
 

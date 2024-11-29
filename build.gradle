@@ -1,20 +1,26 @@
 buildscript {
     repositories {
-        maven { url = 'https://maven.minecraftforge.net/' }
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         mavenCentral()
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:5.1.48'
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'java'
 apply plugin: 'maven-publish'
+apply plugin: 'org.spongepowered.mixin'
 
 group = 'com.dog.vaultcontrol' // Replace with your mod’s group ID
-version = '1.5.1' // Mod version
+version = '1.6.0' // Mod version
 archivesBaseName = 'vaultcontrol'
+
+mixin {
+    config "vaultcontrol.mixins.json"
+}
 
 repositories {
     maven { url = 'https://maven.minecraftforge.net/' }
@@ -45,6 +51,11 @@ minecraft {
 dependencies {
     minecraft 'net.minecraftforge:forge:1.18.2-40.2.9' // Match your desired Forge version
     implementation fg.deobf("curse.maven:vault-hunters-official-mod-458203:5925633")
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
+    implementation(jarJar("io.github.llamalad7:mixinextras-forge:0.4.1")) {
+        jarJar.ranged(it, "[0.4.1,)")
+    }
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
 java {
@@ -55,5 +66,5 @@ java {
 
 jar {
     archiveBaseName.set('vaultcontrol')
-    archiveVersion.set('1.5.2')
+    archiveVersion.set('1.6.0')
 }

@@ -1,6 +1,6 @@
 package com.dog.vaultcontrol.commands;
 
-import com.dog.vaultcontrol.events.handlers.AutoSaveHandler;
+import com.dog.vaultcontrol.saving.AutoSaveHandler;
 import com.dog.vaultcontrol.events.handlers.LockdownHandler;
 import com.mojang.brigadier.Command;
 import com.mojang.brigadier.CommandDispatcher;
